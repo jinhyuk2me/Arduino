@@ -1,5 +1,8 @@
 # 🛗 아두이노 엘리베이터 만들기 원데이 프로젝트
 
+## TINKERCAD
+[회로 설계 보기]([https://www.tinkercad.com/things/iop4fcsV4uM-jin-hyuks-elevator/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=XaEVemRXDWIEVrBFk_zTu2i2QKv1ZtaR6XDs7QHBkJo](https://www.tinkercad.com/things/iop4fcsV4uM-jin-hyuks-elevator))
+
 ## 발표 자료
 
 ![슬라이드 2](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0002.jpg?raw=true)  
