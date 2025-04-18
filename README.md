@@ -1,7 +1,7 @@
 # 🛗 아두이노 엘리베이터 만들기 원데이 프로젝트
 
 ## TINKERCAD
-[회로 설계 보기](https://www.tinkercad.com/things/iop4fcsV4uM-jin-hyuks-elevator)
+[회로 설계 보기]()
 
 ## 발표 자료
 
