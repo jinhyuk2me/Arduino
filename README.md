@@ -1,4 +1,6 @@
-# 아두이노 엘리베이터 만들기 원데이 프로젝트
+# 🛗 아두이노 엘리베이터 만들기 원데이 프로젝트
+
+## 발표 자료
 
 ![슬라이드 2](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0002.jpg?raw=true)  
 ![슬라이드 3](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0003.jpg?raw=true)  
