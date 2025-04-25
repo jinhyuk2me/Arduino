@@ -10,6 +10,12 @@
 
 ---
 
+## 👨‍💻 제작자
+
+**장진혁 (Jang Jin-Hyuk)** &nbsp;&nbsp;[GitHub Profile](https://github.com/jinhyuk2me)
+
+---
+
 ## 🧩 회로 구성
 
 - **외부 버튼**: 각 층의 상행/하행 호출 버튼 (토글 방식)
@@ -58,44 +64,8 @@
 
 ---
 
-## 발표 자료
+## 📬 문의
 
-![슬라이드 2](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0002.jpg?raw=true)  
-![슬라이드 3](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0003.jpg?raw=true)  
-![슬라이드 4](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0004.jpg?raw=true)  
-![슬라이드 5](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0005.jpg?raw=true)  
-![슬라이드 6](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0006.jpg?raw=true)  
-![슬라이드 7](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0007.jpg?raw=true)  
-![슬라이드 8](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0008.jpg?raw=true)  
-![슬라이드 9](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0009.jpg?raw=true)  
-![슬라이드 10](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0010.jpg?raw=true)  
-![슬라이드 11](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0011.jpg?raw=true)  
-![슬라이드 12](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0012.jpg?raw=true)  
-![슬라이드 13](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0013.jpg?raw=true)  
-![슬라이드 14](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0014.jpg?raw=true)  
-![슬라이드 15](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0015.jpg?raw=true)  
-![슬라이드 16](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0016.jpg?raw=true)  
-![슬라이드 17](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0017.jpg?raw=true)  
-![슬라이드 18](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0018.jpg?raw=true)  
-![슬라이드 19](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0019.jpg?raw=true)  
-![슬라이드 20](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0020.jpg?raw=true)  
-![슬라이드 21](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0021.jpg?raw=true)  
-![슬라이드 22](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0022.jpg?raw=true)  
-![슬라이드 23](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0023.jpg?raw=true)  
-![슬라이드 24](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0024.jpg?raw=true)  
-![슬라이드 25](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0025.jpg?raw=true)  
-![슬라이드 26](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0026.jpg?raw=true)  
-![슬라이드 27](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0027.jpg?raw=true)  
-![슬라이드 28](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0028.jpg?raw=true)  
-![슬라이드 29](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0029.jpg?raw=true)  
-![슬라이드 30](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0030.jpg?raw=true)  
-![슬라이드 31](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0031.jpg?raw=true)  
-![슬라이드 32](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0032.jpg?raw=true)  
-![슬라이드 33](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0033.jpg?raw=true)  
-![슬라이드 34](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0034.jpg?raw=true)  
-![슬라이드 35](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0035.jpg?raw=true)  
-![슬라이드 36](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0036.jpg?raw=true)  
-![슬라이드 37](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0037.jpg?raw=true)  
-![슬라이드 38](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0038.jpg?raw=true)  
-![슬라이드 39](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0039.jpg?raw=true)  
-![슬라이드 40](https://github.com/jinhyuk2me/iot-project-elevator/blob/main/img/엘리베이터%20원데이%20프로젝트_page-0040.jpg?raw=true)  
+> **장진혁 (Jang Jin-Hyuk)**  
+> 📧 Email: jinhyuk2ya@gmail.com  
+> 🌐 GitHub: [@jinhyuk2me](https://github.com/jinhyuk2me)
