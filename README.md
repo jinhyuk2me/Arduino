@@ -1,3 +1,5 @@
+![banner](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/banner.png?raw=true)
+
 # 🛗 아두이노 엘리베이터 시스템
 
 > **📅 프로젝트 기간: 2025.04.15 ~ 2025.04.16 (1Day Project)**
@@ -18,6 +20,8 @@
 
 ## 🧩 회로 구성
 
+![circuit](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/circuit.png?raw=true)
+
 - **외부 버튼**: 각 층의 상행/하행 호출 버튼 (토글 방식)
 - **내부 버튼**: 목적층 선택 (취소 불가)
 - **LED 구성**  
@@ -27,6 +31,9 @@
 ---
 
 ## 🚪 주요 기능
+
+![rule](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0015.jpg?raw=true)
+![func](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0017.jpg?raw=true)
 
 | 기능명 | 설명 |
 |--------|------|
@@ -42,6 +49,12 @@
 
 ## ⚙️ 설계 특징
 
+![design1](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0005.jpg?raw=true)
+![design2](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0007.jpg?raw=true)
+![design3](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0008.jpg?raw=true)
+![design4](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0011.jpg?raw=true)
+![design5](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0012.jpg?raw=true)
+
 | 특징 | 상세 설명 |
 |------|-----------|
 | **함수 분리** | `btn_input()`, `update_pos()`, `update_call()` 등 역할별로 구조화 |
@@ -55,12 +68,23 @@
 
 ## 🔄 동작 흐름
 
+![flow](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0006.jpg?raw=true)
+
 1. **버튼 입력 감지** → `btn_input()`
 2. **호출 해제 여부 판단** → `update_call()`
 3. **문 열림 애니메이션** → `update_door_blink()`
 4. **방향 판단** → `update_is_ascending()`
 5. **위치 이동 처리** → `update_pos()`
 6. **LED 출력 업데이트** → `update_led()`
+
+---
+
+## 테스트
+
+![test1](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0042.jpg?raw=true)
+![test2](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0043.jpg?raw=true)
+![test3](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0044.jpg?raw=true)
+![test4](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/slides/%EC%95%84%EB%91%90%EC%9D%B4%EB%85%B8%20%EC%97%98%EB%A6%AC%EB%B2%A0%EC%9D%B4%ED%84%B0%20%EC%8B%9C%EC%8A%A4%ED%85%9C_page-0045.jpg?raw=true)
 
 ---
 
