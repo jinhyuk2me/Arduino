@@ -33,6 +33,8 @@
 
 ## 🧩 회로 구성
 
+[Tinkercad Link](https://www.tinkercad.com/things/iop4fcsV4uM-jin-hyuks-elevator)
+
 ![circuit](https://github.com/jinhyuk2me/arduino-elevator/blob/main/img/circuit.png?raw=true)
 
 | 구성 요소 | 설명 |
