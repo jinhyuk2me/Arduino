@@ -7,16 +7,29 @@
 ## 📌 개요
 
 본 프로젝트는 아두이노 기반으로 제작된 **3층 엘리베이터 제어 시스템**입니다.  
-**내부 호출 버튼**, **외부 상/하행 버튼**, **호출/위치 LED**, **비트 기반 상태 제어**, **millis() 기반 비동기 처리**, **층간 애니메이션 제어** 기능을 포함하며,  
-실제 엘리베이터의 호출 우선순위 및 방향 전환 규칙을 그대로 반영한 구조로 설계되었습니다.
+**내부 호출 버튼**, **외부 상/하행 버튼**, **호출/위치 LED**, **비트 기반 상태 제어**, **millis() 기반 비동기 처리**, **층간 애니메이션 제어** 기능을 포함하며, 실제 엘리베이터의 호출 우선순위 및 방향 전환 규칙을 그대로 반영한 구조로 설계되었습니다.
 
-> 📌 **핵심 키워드 요약**
 > - 비트 기반 상태 관리 (`byte`, `bitRead`, `bitWrite`)
 > - millis() 기반 비동기 흐름
 > - 층간 이동: `<<`, `>>` 시프트 연산
 > - 호출 우선순위 기반 방향 결정 (`call > pos`, `call % pos == 0`)
 
 ---
+
+## 🎯 프로젝트 목적 및 설계 철학
+
+본 프로젝트는 현실 엘리베이터의 동작 원리를 아두이노로 **구조적이고 논리적으로 재현**하는 것을 목표로 하며, 다음 세 가지 설계 철학을 바탕으로 구현되었습니다:
+
+1. **현실 규칙의 준수**  
+   - 호출 우선순위, 방향 전환, 호출 해제 및 문 열림 조건 등 **현실 엘리베이터의 규칙을 그대로 구현**
+
+2. **구조적 코드 설계**  
+   - 호출/위치/방향/애니메이션을 독립된 함수로 분리하여 **유지보수성 향상** 및 **정확한 동작 흐름 구현**
+
+3. **비트 기반 최적화 처리**  
+   - 상태를 `byte` 변수로 관리하며, **비트 연산을 통한 효율적 상태 제어와 최소한의 조건문** 구현
+  
+---   
 
 ## 🧩 회로 구성
 
@@ -44,6 +57,20 @@
 
 ---
 
+## 🧠 기능별 구현 함수 요약
+
+| 기능                           | 담당 함수                           |
+|--------------------------------|--------------------------------------|
+| 호출 버튼 입력 처리            | `btn_input()`                        |
+| 호출 해제 처리                | `update_call()`                      |
+| 문 열림 애니메이션             | `update_door_blink()`                |
+| 이동 방향 판단                | `update_is_ascending()`              |
+| 위치 이동                     | `update_pos()`                       |
+| LED 상태 갱신                 | `update_led()`, `update_led_pos()`, `update_led_call()` |
+| 디버깅용 시리얼 출력           | `print_state()`, `print_floor()`     |
+
+---
+
 ## 🏢 현실 엘리베이터와의 규칙 비교
 
 | 항목               | 현실 엘리베이터                                   | 본 프로젝트 구현 (User Requirement) |
@@ -60,27 +87,88 @@
 
 ## ⚙️ 설계 특징
 
-### 📎 함수 기반 구조화
+### 🔸 기능별 함수 분리 (구조적 설계)
 
-- 각 기능은 `btn_input()`, `update_call()`, `update_pos()`, `update_door_blink()` 등으로 분리
-- 메인 루프는 **순서 기반 흐름 제어만 담당** → 가독성 및 유지보수성 향상
+전체 시스템은 loop 내부에서 **순차적 함수 호출만 수행**하며, 각 함수는 자신의 조건 판단과 처리를 **독립적으로 수행**하도록 설계되었습니다.
 
-### 🧮 비트 플래그 기반 상태 관리
+```
+void loop() {  
+ btn_input();  
+ update_call();  
+ update_door_blink();  
+ if (!is_blinking) {  
+  update_is_ascending();  
+  update_pos();  
+ }  
+ update_led();  
+}
+```
 
-- `byte` 단위 상태(`pos`, `up_call`, `down_call`, `inner_call`)로 층/호출을 관리
-- `bitRead`, `bitWrite`를 통한 빠른 연산 및 메모리 절약
-- 호출 해제: `inner_call &= ~pos;`, 위치 이동: `pos <<= 1;`
-
-### ⏱ millis() 기반 비동기 처리
-
-- delay() 사용 없이 `millis()` 기반 주기 비교
-- 문 열림 애니메이션, 위치 이동, LED 갱신을 각각 독립 제어
-- 깜빡임은 `pos = 0`과 `pos_snapshot`을 번갈아 변경하여 구현
-
+> loop는 흐름의 순서만 유지하고, 각 기능은 자체 조건에서만 동작함으로써 **가독성, 유지보수성, 기능 격리성**을 모두 확보하였습니다.
 
 ---
 
-## 🔄 동작 흐름
+### 🔸 millis() 기반 비동기 제어
+
+시스템 내 모든 시간 제어는 millis() 값을 이용해 **독립적인 주기 관리**로 구현되어 있습니다.  
+delay 사용 없이, **이동 / 깜빡임 / LED 갱신** 등 모든 동작을 자기 주기로 판단합니다.
+
+| 동작 항목         | 제어 조건 표현                                 |
+|------------------|-------------------------------------------------|
+| 위치 이동         | millis() - prev_move_time > MOVING_INTERVAL   |
+| 문 열림 LED 깜빡임 | (millis() / BLINK_INTERVAL) % 2 == 0           |
+| 문 열림 종료       | millis() - blink_start_time > BLINK_DURATION  |
+| LED 주기 갱신     | millis() - prev_led_time > MOVING_INTERVAL    |
+
+> 각 동작이 **자신의 주기 변수**만 참조하기 때문에 동시 동작이 충돌 없이 처리됩니다.
+
+---
+
+### 🔸 비트 플래그 기반 상태 표현
+
+pos, up_call, down_call, inner_call 모두 byte(혹은 unsigned long)로 선언되어  
+상태는 **비트 단위로 저장되고 연산**되며, 조건 판단 또한 **논리 연산으로만 구성**됩니다.
+
+```
+pos        = 00000100  (2층)  
+up_call    = 00000001  (1층 상행 호출)  
+down_call  = 00100000  (5층 하행 호출)  
+inner_call = 00000010  (1층 내부 호출)  
+call = up_call | down_call | inner_call = 00100011
+```
+- 위쪽 호출 존재 여부 → call > pos  
+- 아래쪽 호출 존재 여부 → call % pos == 0  
+- 현재 위치에 호출 존재 여부 → call & pos != 0
+
+> 이처럼 별도 배열이나 조건문 없이 **한 줄 비트 연산으로 호출 위치 판단이 가능**합니다.
+
+---
+
+### 🔸 출력/애니메이션의 일관성
+
+LED 상태 출력은 별도 제어문 없이 pos, call 값에 따라 자동 결정됩니다.
+
+| 항목 | 처리 방식                      |
+|------|--------------------------------|
+| 위치 LED   | bitRead(pos, i)             |
+| 호출 LED   | bitRead(call, 3*i)          |
+| 문 열림 애니메이션 | pos = 0 ↔ pos_snapshot 토글 |
+
+> pos = 0 으로 깜빡이게 하고, 이후 다시 snapshot으로 복원함으로써  
+> LED 깜빡임도 별도 상태 변수 없이 간결하게 구현됩니다.
+
+## 🔍 핵심 설계 요약
+
+| 항목     | 구현 전략 요약 |
+|----------|----------------|
+| **속도** | 비트 연산 기반 호출 판단 → 빠름 |
+| **단순성** | pos, call 중심 상태 표현 통합 |
+| **확장성** | byte → unsigned long 확장 시 64층 이상 가능 |
+| **일관성** | 호출 등록, 정지 판단, LED 제어 모두 동일 비트 기반 처리 |
+
+---
+
+## 🔄 전체 동작 흐름
 
 ```mermaid
 graph TD
@@ -92,6 +180,143 @@ graph TD
     F --> G[update_pos]
     E --> H[update_led]
     G --> H
+```
+
+---
+
+## 🔧 함수별 동작 흐름
+
+### 🔹 update_call()
+```mermaid
+flowchart TD
+    START([Start]) --> A[특정 층에 호출 존재 확인]
+    A --> B[open_door ← false]
+    B --> C{현재 위치에만 호출 존재?}
+
+    C -- Yes --> D[모든 호출 해제<br>open_door ← true]
+    C -- No --> E{상행 중 && 상행 호출 존재?}
+    E -- Yes --> F[상행 호출 해제<br>open_door ← true]
+    E -- No --> G{하행 중 && 하행 호출 존재?}
+    G -- Yes --> H[하행 호출 해제<br>open_door ← true]
+
+    %% 각 해제 결과 → 조건 판단
+    D --> I{open_door == true && is_blinking == false}
+    F --> I
+    H --> I
+
+    I -- Yes --> J[문 열림 트리거 실행<br>is_blinking ← true<br>blink_start_time 저장<br>pos_snapshot 저장]
+    I -- No --> END
+    J --> END
+    G --> END
+    E --> END
+    C -- No --> END
+```
+
+### 🔹 update_led()
+```mermaid
+flowchart TD
+    START([Start]) --> A[update_led_call 실행]
+    A --> B{LED 주기 지났는가}
+    B -- No --> END([End])
+    B -- Yes --> C[update_led_pos 실행]
+    C --> D[prev_led_time 값 갱신]
+    D --> END
+```
+
+### 🔹 update_is_ascending()
+```mermaid
+flowchart TD
+    START([Start]) --> A{호출이 존재하는가}
+    A -- No --> B{현재 위치가 정규층이 아닌가}
+    B -- Yes --> C{현재 위치는 상승 방향 위치인가}
+    C -- Yes --> D[is_ascending을 true로 설정]
+    C -- No --> E[is_ascending을 false로 설정]
+    B -- No --> F[End]
+    D --> F
+    E --> F
+
+    A -- Yes --> G{호출 위치는 현재 위치와 같은가}
+    G -- Yes --> F
+    G -- No --> H{현재 방향은 상승 중인가}
+    H -- Yes --> I{호출 위치는 현재보다 아래인가}
+    I -- Yes --> J[is_ascending을 false로 설정]
+    I -- No --> F
+    H -- No --> K{호출 위치가 현재 위치 배수인가}
+    K -- Yes --> L[is_ascending을 true로 설정]
+    K -- No --> F
+    J --> F
+    L --> F
+```
+
+### 🔹 stay()
+```mermaid
+flowchart TD
+    START([Start]) --> A{정규층인가?}
+    A -- No --> Z[return false]
+
+    A -- Yes --> B{방향에 맞는 외부 호출 존재?}
+    B -- Yes --> END1[return true]
+
+    B -- No --> C{내부 호출 존재?}
+    C -- Yes --> END1
+
+    C -- No --> D{호출 == 현재층<br>or<br>호출 없음?}
+    D -- Yes --> END1
+
+    D -- No --> E{최상층 && 하행 호출?<br>or<br>최하층 && 상행 호출?}
+    E -- Yes --> END1
+    E -- No --> Z
+
+    END1 --> END([End])
+    Z --> END
+```
+
+### 🔹 update_pos()
+```mermaid
+flowchart TD
+    START([Start]) --> A{이동 간격 지났는가}
+    A -- No --> R1[return]
+    A -- Yes --> B{정지해야 하는가}
+
+    B -- Yes --> R1
+    B -- No --> C{상승 중이고 최상층 아님}
+    C -- Yes --> D[pos 한 층 올림, 시간 저장]
+    C -- No --> E{하강 중이고 최하층 아님}
+    E -- Yes --> F[pos 한 층 내림, 시간 저장]
+    E -- No --> G[이동 불가]
+
+    D --> H{현재 위치는 최상층}
+    F --> I{현재 위치는 최하층}
+    H -- Yes --> J[is_ascending을 false로 설정]
+    I -- Yes --> K[is_ascending을 true로 설정]
+    H -- No --> L[방향 유지]
+    I -- No --> L
+
+    J --> M[update_is_ascending 실행]
+    K --> M
+    L --> M
+
+    G --> END([End])
+    R1 --> END
+    M --> END
+```
+
+### 🔹 update_door_blink()
+```mermaid
+flowchart TD
+    START([Start]) --> A{is_blinking 값은 true인가}
+    A -- No --> END([End])
+    A -- Yes --> B{현재 시간이 blink 시작 이후보다 짧은가}
+
+    B -- Yes --> C{현재 시간 주기가 짝수인가}
+    C -- Yes --> D[pos 값을 0으로 설정]
+    C -- No --> E[pos 값을 snapshot으로 복원]
+    D --> G[LED 위치 업데이트]
+    E --> G
+
+    B -- No --> F[pos 복원, is_blinking 해제, 시간 갱신]
+    F --> G
+    G --> END
 ```
 
 ---
